@@ -1,3 +1,5 @@
+const CHAMPIONS_API_URL = 'https://championsbattledata.com/api/v1/pokemon';
+
 function createTypeBoxes(typesArray) {
     return typesArray.map(typeInfo => {
         const typeName = typeInfo.type.name;
