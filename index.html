@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokeMatch</title>
+    <link rel="stylesheet" href="../evaluacionapi/assets/css/style.css">
+    <link rel="stylesheet" href="../evaluacionapi/assets/js/codigo.js">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
 </head>
 
 <body>
@@ -44,12 +49,197 @@
                     </li> -->
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Busqueda rápida..." aria-label="Search" />
+                    <input class="form-control me-2" type="search" placeholder="Busqueda rápida..."
+                        aria-label="Search" />
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
             </div>
         </div>
     </nav>
+    <h5>GALERIA DE POKÉMON</h5>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <div class="bg-light rounded p-3 mb-2 text-center" style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                    <img src="../evaluacionapi/assets/img/Venusaur.png" class="img-fluid" style="max-height: 180px; object-fit: contain;" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">#0003 Venusaur</h5>
+                    <div class="d-flex gap-2 mb-3">
+                        <div class="badge rounded-2 bg-type-grass px-3 py-2 text-uppercase fw-bold shadow-sm">
+                            Planta
+                        </div>
+                        <div class="badge rounded-2 bg-type-poison px-3 py-2 text-uppercase fw-bold shadow-sm">
+                            Veneno
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">HP</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 54%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">80</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">ATK</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 55%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">82</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">DEF</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 55%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">83</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPA</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-success" style="width: 58%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">100</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPD</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-success" style="width: 58%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">100</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPE</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 54%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">80</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="bg-light rounded p-3 mb-2 text-center" style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                    <img src="../evaluacionapi/assets/img/Charizard.png" class="img-fluid" style="max-height: 180px; object-fit: contain;" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">#0006 Charizard</h5>
+                    <div class="d-flex gap-2 mb-3">
+                        <div class="badge rounded-2 bg-type-fire px-3 py-2 text-uppercase fw-bold shadow-sm">
+                            Fuego
+                        </div>
+                        <div class="badge rounded-2 bg-type-flying px-3 py-2 text-uppercase fw-bold shadow-sm">
+                            Volador
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">HP</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 53%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">78</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">ATK</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 56%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">84</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">DEF</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 53%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">78</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPA</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-success" style="width: 60%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">109</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPD</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 56%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">85</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPE</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-success" style="width: 58%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">100</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="bg-light rounded p-3 mb-2 text-center" style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                    <img src="../evaluacionapi/assets/img/Blastoise.png" class="img-fluid" style="max-height: 180px; object-fit: contain;" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">#0009 Blastoise</h5>
+                    <div class="d-flex gap-2 mb-3">
+                        <div class="badge rounded-2 bg-type-water px-3 py-2 text-uppercase fw-bold shadow-sm">
+                            Agua
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">HP</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 53%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">79</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">ATK</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 56%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">83</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">DEF</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-success" style="width: 58%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">100</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPA</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 57%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">85</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPD</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-success" style="width: 60%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">105</small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <div class="fw-bold small text-secondary text-uppercase" style="width: 35px;">SPE</div>
+                        <div class="progress flex-grow-1" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 53%;"></div>
+                        </div>
+                        <small class="fw-semibold text-dark text-end" style="width: 30px;">78</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
