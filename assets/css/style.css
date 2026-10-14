@@ -1,3 +1,4 @@
+/* Recuadros de tipos con colores */
 .bg-type-grass { background-color: #7AC74C; color: #FFFFFF; }
 .bg-type-poison { background-color: #A33EA1; color: #FFFFFF; }
 .bg-type-fire { background-color: #EE8130; color: #FFFFFF; }
@@ -16,6 +17,7 @@
 .bg-type-fairy { background-color: #D685AD; color: #FFFFFF; }
 .bg-type-normal { background-color: #A8A77A; color: #FFFFFF; }
 
+/* Colores y transparencia de cards */
 .card, #home-view .card, #pokemon-gallery-section .card {
     background-color: rgba(255, 255, 255, 0.92) !important;
     backdrop-filter: blur(5px);
@@ -23,6 +25,7 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+/* NavBar diseño y colores */
 .navbar, .navbar.bg-body-tertiary, .navbar.bg-dark, nav.navbar {
     background-color: #212529 !important;
     border-bottom: 3px solid #dc3545;
@@ -37,7 +40,9 @@
 .navbar .nav-link:hover {
     color: #dc3545 !important;
 }
+/* Fin diseño NavBar */
 
+/* Diseño Galeria */
 h2, .h2, h3, .h3, 
 #pokemon-gallery-section h2, 
 .text-center.fw-bold.my-4 {
@@ -75,12 +80,14 @@ h2.text-center {
     max-width: 320px;
     margin: 0 auto;
 }
+/* Fin diseño galeria */
 
 html, body {
     height: 100%;
     margin: 0;
 }
 
+/* Fondo pagina */
 body {
     background-image: url('../img/fondo.jpg');
     background-repeat: repeat;
