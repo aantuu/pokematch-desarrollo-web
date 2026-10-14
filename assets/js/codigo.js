@@ -1,12 +1,15 @@
+// API Y FILTROS
 const CHAMPIONS_API_URL = 'https://championsbattledata.com/api';
 const URL_ATACANTES = `${CHAMPIONS_API_URL}?role=atacantes`;
 const URL_TANQUES = `${CHAMPIONS_API_URL}?role=tanques`;
 const URL_VELOCES = `${CHAMPIONS_API_URL}?role=veloces`;
 
+//Cargar Pokemon y establecer maximo de integrantes del equipo
 let myRoster = JSON.parse(localStorage.getItem('pokemonRoster')) || [];
 let allPokemonLoaded = [];
 const MAX_ROSTER_SIZE = 6;
 
+// Debilidades de los tipos
 const TYPE_WEAKNESSES = {
     fire: ['water', 'electric', 'rock'],
     fuego: ['agua', 'electrico', 'roca'],
@@ -43,6 +46,7 @@ const TYPE_WEAKNESSES = {
     hada: ['veneno', 'acero']
 };
 
+// Carga de base de datos de la API
 async function loadChampionsData(url = CHAMPIONS_API_URL) {
     try {
         const res = await fetch(url);
@@ -55,6 +59,7 @@ async function loadChampionsData(url = CHAMPIONS_API_URL) {
     }
 }
 
+//Guardar equipo en el memoria de la pagina
 function saveTeamToStorage() {
     const teamNameInput = document.getElementById('team-name');
     const name = teamNameInput ? teamNameInput.value.trim() : 'Mi Equipo Champion';
@@ -68,6 +73,7 @@ function saveTeamConfiguration() {
     alert("¡Equipo guardado con éxito en el navegador!");
 }
 
+// Cargar equipo guardado
 function loadSavedTeam() {
     const saved = localStorage.getItem('pokematch_team');
     if (saved && allPokemonLoaded.length > 0) {
@@ -89,6 +95,7 @@ function loadSavedTeam() {
     }
 }
 
+// Crear las cajas de tipo
 function createTypeBoxes(typesArray) {
     if (!Array.isArray(typesArray)) return '';
     return typesArray.map(typeInfo => {
@@ -101,6 +108,7 @@ function createTypeBoxes(typesArray) {
     }).join('');
 }
 
+// Establece la clasificacion de estadisticas de los pokemon
 function getStatColorClass(val) {
     if (val < 60) {
         return 'bg-danger';
@@ -111,6 +119,7 @@ function getStatColorClass(val) {
     }
 }
 
+// Documento principal para eventos y resultados
 document.addEventListener('DOMContentLoaded', () => {
     loadChampionsData(CHAMPIONS_API_URL);
     
@@ -212,7 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     renderRosterUI();
 });
+//Fin documento principal
 
+// Establecer diseño de la galeria y su forma de presentarse
 function renderGallery(list = allPokemonLoaded) {
     const galleryContainer = document.getElementById('pokemon-gallery-container');
     if (!galleryContainer) return;
@@ -253,12 +264,16 @@ function renderGallery(list = allPokemonLoaded) {
         `;
     }).join('');
 }
+// Fin Render Galeria
 
+
+// Obtener el nombre del pokemon directo de la API y sus modificaciones de nombre segun las variaciones
 function getPokemonSlug(poke) {
     const baseSlug = (poke.slug || '').toLowerCase();
     const titleText = (poke.primary?.title || '').toLowerCase();
     const pokeName = poke.name || 'pokémon';
 
+    // Especificaciones y correciones de nombres de pokemon para poder conectar el link a pagina de equipos, estadisticas y builds
     if (baseSlug.endsWith('-f')) {
         return baseSlug.replace(/-f$/, '-female');
     }
@@ -313,6 +328,7 @@ function getPokemonSlug(poke) {
     return (baseSlug || pokeName.toLowerCase().replace(/\s+/g, '-')).replace(/--+/g, '-');
 }
 
+// Abrir Modal
 function openPokemonModal(identifier) {
     const poke = allPokemonLoaded.find(p => p.id === identifier || p.slug === identifier || p.name === identifier);
     if (!poke) return;
@@ -344,6 +360,7 @@ function openPokemonModal(identifier) {
     modal.show();
 }
 
+// Agregar pokemon al equipo
 function addToRoster(identifier) {
     if (myRoster.length >= MAX_ROSTER_SIZE) {
         alert("¡Tu equipo ya está completo! Máximo 6 integrantes.");
@@ -371,6 +388,7 @@ function addToRoster(identifier) {
     alert(`¡${pokeName} añadido a tu equipo!`);
 }
 
+// Eliminar pokemon del equipo
 function removeFromRoster(identifier) {
     myRoster = myRoster.filter(p =>
         String(p.id) !== String(identifier) &&
@@ -382,6 +400,7 @@ function removeFromRoster(identifier) {
     renderRosterUI();
 }
 
+// Limpiar/Eliminar equipo completo
 function clearRoster() {
     if (confirm("¿Estás seguro de que deseas vaciar todo tu equipo?")) {
         myRoster = [];
@@ -390,6 +409,7 @@ function clearRoster() {
     }
 }
 
+// Seleccionar/Elegir pokemon en el Modal
 function selectPokemonFromModal(identifier) {
     addToRoster(identifier);
 
@@ -402,6 +422,7 @@ function selectPokemonFromModal(identifier) {
     }
 }
 
+// Diseño y forma de presentar la UI
 function renderRosterUI() {
     const badge = document.querySelector('.badge.bg-danger, #roster-count-badge, .nav-item .badge');
     if (badge) badge.textContent = `${myRoster.length}/6`;
@@ -445,6 +466,7 @@ function renderRosterUI() {
     updateTeamWeaknessesSummary();
 }
 
+// Actualizar el resumen de tipos en el equipo
 function updateTeamTypesSummary() {
     const typeCoverage = document.getElementById('team-type-coverage');
     if (!typeCoverage) return;
@@ -463,6 +485,7 @@ function updateTeamTypesSummary() {
     typeCoverage.innerHTML = Array.from(allTypesSet).map(t => `<span class="badge bg-secondary me-1">${t}</span>`).join('');
 }
 
+// Actualizar debilidades de tipos en el equipo
 function updateTeamWeaknessesSummary() {
     const weaknessesContainer = document.getElementById('team-type-weaknesses');
     if (!weaknessesContainer) return;
@@ -495,6 +518,7 @@ function updateTeamWeaknessesSummary() {
         .join('');
 }
 
+// Actualizar tipos en el equipo
 function updateTypeCoverage() {
     const coverageContainer = document.getElementById('team-type-coverage');
     if (!coverageContainer) return;
@@ -508,6 +532,7 @@ function updateTypeCoverage() {
     coverageContainer.innerHTML = createTypeBoxes(allTypes);
 }
 
+// Filtrar por rol
 function filterByRole(role) {
     const gallerySection = document.getElementById('pokemon-gallery-section');
     const homeView = document.getElementById('home-view');
@@ -538,6 +563,7 @@ function filterByRole(role) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+//Buscador de NavBar
 function handleNavbarSearch(event) {
     if (event) event.preventDefault();
 
