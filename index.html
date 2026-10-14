@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéMatch</title>
+    <link rel="stylesheet" href="../pokematch-desarrollo-web-main/assets/css/style.css">
+    <script src="../pokematch-desarrollo-web-main/assets/js/codigo.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" id="btn-home-nav">PokéMatch</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="btn-gallery-nav">Galería</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#rosterManagerModal">
+                                Armar Equipo <span id="roster-badge" class="badge bg-danger ms-1">0/6</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFiltros" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Filtros
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownFiltros">
+                                <li><a class="dropdown-item" href="#" onclick="filterByRole('atacantes')">Atacantes</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#" onclick="filterByRole('tanques')">Tanques</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="filterByRole('veloces')">Veloces</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex gap-2" onsubmit="handleNavbarSearch(event)">
+                        <input type="text" id="navbar-search-input" class="form-control form-control-sm"
+                            placeholder="Búsqueda rápida...">
+                        <button type="submit" class="btn btn-outline-success btn-sm">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="pokemon-gallery-section" class="container my-5" style="display: none;">
+            <header>
+                <h2 class="fw-bold mb-4 text-dark">Galería de Pokémon</h2>
+            </header>
+            <div id="pokemon-gallery-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            </div>
+        </section>
+
+        <section id="home-view" class="text-center my-4">
+            <header class="title d-inline-block bg-white px-4 py-2 rounded shadow-sm">
+                <h5 class="fw-bold text-dark m-0">TOP 3 META POKÉMON</h5>
+            </header>
+            <div class="container my-4">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                    <article class="col">
+                        <div class="card h-100">
+                            <div class="bg-light rounded p-3 mb-2 text-center"
+                                style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                                <img src="../pokematch-desarrollo-web-main/assets/img/Rillaboom.png" class="img-fluid"
+                                    style="max-height: 180px; object-fit: contain;" alt="Rillaboom">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">#0812 Rillaboom</h5>
+                                <div class="d-flex gap-2 mb-3">
+                                    <div
+                                        class="badge rounded-2 bg-type-grass px-3 py-2 text-uppercase fw-bold shadow-sm">
+                                        Planta
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">HP</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 70%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">175</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">ATK</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 65%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">145</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">DEF</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 60%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">110</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPA</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 54%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">80</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPD</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 56%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">90</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPE</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 58%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">105</small>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-danger btn-sm mt-auto fw-semibold w-100"
+                                onclick="addToRoster('Rillaboom')">
+                                + Añadir al Equipo
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="col">
+                        <div class="card h-100">
+                            <div class="bg-light rounded p-3 mb-2 text-center"
+                                style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                                <img src="../pokematch-desarrollo-web-main/assets/img/Garchomp.png" class="img-fluid"
+                                    style="max-height: 180px; object-fit: contain;" alt="Garchomp">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">#0445 Garchomp</h5>
+                                <div class="d-flex gap-2 mb-3">
+                                    <div
+                                        class="badge rounded-2 bg-type-dragon px-3 py-2 text-uppercase fw-bold shadow-sm">
+                                        Dragon
+                                    </div>
+                                    <div
+                                        class="badge rounded-2 bg-type-ground px-3 py-2 text-uppercase fw-bold shadow-sm">
+                                        Tierra
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">HP</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 80%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">183</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">ATK</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 67%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">150</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">DEF</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 62%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">115</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPA</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 57%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">100</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPD</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 58%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">105</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPE</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 65%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">122</small>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-danger btn-sm mt-auto fw-semibold w-100"
+                                onclick="addToRoster('Garchomp')">
+                                + Añadir al Equipo
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="col">
+                        <div class="card h-100">
+                            <div class="bg-light rounded p-3 mb-2 text-center"
+                                style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                                <img src="../pokematch-desarrollo-web-main/assets/img/Sneasler.png" class="img-fluid"
+                                    style="max-height: 180px; object-fit: contain;" alt="Sneasler">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">#0903 Sneasler</h5>
+                                <div class="d-flex gap-2 mb-3">
+                                    <div
+                                        class="badge rounded-2 bg-type-fighting px-3 py-2 text-uppercase fw-bold shadow-sm">
+                                        Pelea
+                                    </div>
+                                    <div
+                                        class="badge rounded-2 bg-type-poison px-3 py-2 text-uppercase fw-bold shadow-sm">
+                                        Veneno
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">HP</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 69%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">155</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">ATK</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 67%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">150</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">DEF</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 54%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">80</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPA</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-danger" style="width: 45%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">60</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPD</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-warning" style="width: 57%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">100</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <span class="fw-bold small text-secondary text-uppercase"
+                                        style="width: 35px;">SPE</span>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" style="width: 60%;"></div>
+                                    </div>
+                                    <small class="fw-semibold text-dark text-end" style="width: 30px;">140</small>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-danger btn-sm mt-auto fw-semibold w-100"
+                                onclick="addToRoster('Sneasler')">
+                                + Añadir al Equipo
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <aside class="container d-flex justify-content-center my-5">
+                <div class="card text-center shadow-sm border-0 p-4 bg-light" style="width: 22rem;">
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary w-100 py-2 fw-semibold" id="btn-ver-otros-gallery">Ver otros
+                            Pokémon</a>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <div class="modal fade" id="rosterManagerModal" tabindex="-1" aria-labelledby="rosterModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow-lg">
+
+                <header class="modal-header bg-dark text-white border-bottom border-danger border-3">
+                    <h5 class="modal-title fw-bold d-flex align-items-center gap-2" id="rosterModalLabel">
+                        Configuración de Equipo — Champions Meta
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </header>
+
+                <div class="modal-body bg-light">
+
+                    <div class="card border-0 shadow-sm p-3 mb-4 bg-white">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-7">
+                                <label for="team-name" class="form-label fw-bold text-muted small text-uppercase">Nombre
+                                    de tu Equipo</label>
+                                <input type="text" id="team-name" class="form-control form-control-lg fw-semibold"
+                                    value="Mi Equipo Champion">
+                            </div>
+                            <div class="col-md-5 d-flex gap-2 align-items-end justify-content-md-end mt-3 mt-md-0">
+                                <button class="btn btn-outline-danger w-50" onclick="clearRoster()">
+                                    Vaciar
+                                </button>
+                                <button class="btn btn-success w-50 fw-bold shadow-sm" onclick="saveTeamToStorage()">
+                                    Guardar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm p-3 mb-4 bg-white">
+                        <label for="modal-search-input" class="form-label fw-bold text-muted small text-uppercase">
+                            Buscar Pokémon para añadir</label>
+                        <div class="position-relative">
+                            <input type="text" id="modal-search-input" class="form-control"
+                                placeholder="Ej: Charizard, Pikachu o ID...">
+                            <div id="modal-search-results" class="list-group position-absolute w-100 shadow mt-1"
+                                style="max-height: 220px; overflow-y: auto; z-index: 1050; display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold text-dark m-0">Integrantes (<span id="modal-roster-count"
+                                class="text-danger">0</span>/6)</h6>
+                        <small class="text-muted">Haz clic en X para quitar un integrante</small>
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-3 mb-4"
+                        id="roster-slots-container">
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-6">
+                            <div class="card border-0 shadow-sm p-3 h-100 bg-white">
+                                <h6 class="fw-bold text-dark mb-2">Tipos en el Equipo</h6>
+                                <div id="team-type-coverage" class="d-flex flex-wrap gap-1 align-items-center">
+                                    <span class="text-muted small">Agrega integrantes para ver los tipos
+                                        representados.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="card border-0 shadow-sm p-3 h-100 bg-white">
+                                <h6 class="fw-bold text-dark mb-2">Debilidades de Tipos</h6>
+                                <div id="team-type-weaknesses" class="d-flex flex-wrap gap-1 align-items-center">
+                                    <span class="text-muted small">Agrega integrantes para ver las debilidades.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer class="modal-footer bg-white">
+                        <button type="button" class="btn btn-secondary px-4 fw-semibold" data-bs-dismiss="modal">
+                            Volver a la Galería
+                        </button>
+                    </footer>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-dark text-white text-center py-4 mt-auto border-top border-danger border-3">
+            <div class="container">
+                <p class="mb-1 fw-bold">Pokémon Match & Champions Team Builder</p>
+                <div class="d-flex justify-content-center gap-3 my-2 flex-wrap">
+                    <a href="https://championsbattledata.com/" target="_blank"
+                        class="text-danger text-decoration-none small fw-semibold">Champions Battle Data</a>
+                    <span class="text-secondary">•</span>
+                    <a href="https://www.pokemon-zone.com/champions/" target="_blank"
+                        class="text-danger text-decoration-none small fw-semibold">Pokémon Zone</a>
+                </div>
+                <small class="text-secondary d-block mt-2" style="font-size: 0.75rem;">© 2026 Pokémon.</small>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
